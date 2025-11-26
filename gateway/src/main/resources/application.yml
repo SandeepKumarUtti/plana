@@ -1,0 +1,54 @@
+server:
+  port: 8080  # Gateway will run on port 8080
+
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+
+        # Document Manager Service
+        - id: document-manager
+          uri: http://localhost:8082
+          predicates:
+            - Path=/documents/**
+
+        # Location Based Reminder Service
+        - id: location-reminder
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/reminders/**
+
+        # Todo Service
+        - id: todo-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/todos/**
+
+      default-filters:
+        - AddResponseHeader=Gateway-Version, 1.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: gateway-service
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+  file:
+    name: logs/gateway-service.log

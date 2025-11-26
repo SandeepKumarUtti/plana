@@ -1,0 +1,23 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: ./positions.yaml
+
+clients:
+  - url: http://localhost:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: spring-boot-services
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: springlogs
+          __path__: /Users/sandeepkumar/Spring Boot/plana/**/logs/*.log
+    pipeline_stages:
+      - regex:
+          expression: '.*/plana/(?P<service>[^/]+)/logs/.*'
+      - labels:
+          service:

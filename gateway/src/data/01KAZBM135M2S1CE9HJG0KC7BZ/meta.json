@@ -1,0 +1,18 @@
+{
+	"ulid": "01KAZBM135M2S1CE9HJG0KC7BZ",
+	"minTime": 1764086401352,
+	"maxTime": 1764093600000,
+	"stats": {
+		"numSamples": 6310,
+		"numFloatSamples": 6310,
+		"numSeries": 20,
+		"numChunks": 60
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01KAZBM135M2S1CE9HJG0KC7BZ"
+		]
+	},
+	"version": 1
+}

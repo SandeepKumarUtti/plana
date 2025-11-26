@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+
+  - job_name: 'gateway'
+    static_configs:
+      - targets: ['localhost:8080']
+
+  - job_name: 'document-service'
+    static_configs:
+      - targets: ['localhost:8082']
+
+  - job_name: 'reminder-service'
+    static_configs:
+      - targets: ['localhost:8083']
+
+  - job_name: 'todo-service'
+    static_configs:
+      - targets: ['localhost:8081']
