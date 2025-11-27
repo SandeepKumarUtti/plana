@@ -46,9 +46,17 @@ management:
         enabled: true
     tags:
       application: gateway-service
+  tracing:
+    sampling:
+      probability: 1.0  # Sample 100% of requests (use 0.1 for 10% in production)
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
 
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
   file:
     name: logs/gateway-service.log
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"

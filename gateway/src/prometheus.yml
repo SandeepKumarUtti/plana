@@ -4,17 +4,21 @@ global:
 scrape_configs:
 
   - job_name: 'gateway'
+    metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['localhost:8080']
 
   - job_name: 'document-service'
+    metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['localhost:8082']
 
   - job_name: 'reminder-service'
+    metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['localhost:8083']
 
   - job_name: 'todo-service'
+    metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: ['localhost:8081']

@@ -7,6 +7,9 @@ import com.plana.loction_service.entity.LocationReminder;
 import com.plana.loction_service.entity.UserLocationDTO;
 import com.plana.loction_service.repository.ReminderRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class LocationReminderService {
@@ -35,8 +38,9 @@ public class LocationReminderService {
         return R * c;
     }
 
-    public String checkLocation(String userId, UserLocationDTO userLocation) {
+    public List<LocationReminder> checkLocation(String userId, UserLocationDTO userLocation) {
         var reminders = reminderRepository.findByUserIdAndTriggeredFalse(userId);
+        List<LocationReminder> triggeredReminders = new ArrayList<>();
 
         for (LocationReminder r : reminders) {
             double distance = distanceInMeters(
@@ -47,13 +51,13 @@ public class LocationReminderService {
             );
 
             if (distance <= r.getRadiusMeters()) {
-                // r.setTriggered(true);
-                // reminderRepository.save(r);
-                return "Reminder Triggered: " + r.getTitle();
+               // r.setTriggered(true);
+               // reminderRepository.save(r);
+                triggeredReminders.add(r);
             }
         }
 
-        return "No reminders triggered";
+        return triggeredReminders;
     }
 }
 

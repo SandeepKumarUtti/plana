@@ -2,6 +2,9 @@ package com.plana.loction_service.controller;
 
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 import com.plana.loction_service.entity.LocationReminder;
@@ -27,7 +30,7 @@ public class ReminderController {
 
     // Mobile app calls this when location updates
     @PostMapping("/{userId}/check")
-    public String checkReminder(
+    public List<LocationReminder> checkReminder(
             @PathVariable String userId,
             @RequestBody UserLocationDTO location
     ) {

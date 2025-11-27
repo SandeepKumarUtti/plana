@@ -1,0 +1,18 @@
+{
+	"ulid": "01KB24T3TP3170HXAZ1AG03ZVD",
+	"minTime": 1764219174564,
+	"maxTime": 1764223200000,
+	"stats": {
+		"numSamples": 39146,
+		"numFloatSamples": 39146,
+		"numSeries": 460,
+		"numChunks": 460
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01KB24T3TP3170HXAZ1AG03ZVD"
+		]
+	},
+	"version": 1
+}
